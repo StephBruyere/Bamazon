@@ -14,6 +14,8 @@ PRIMARY KEY (item_number)
 
 SELECT * FROM bamazon;
 
+show tables;
+
 
 
 
