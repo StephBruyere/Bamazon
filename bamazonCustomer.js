@@ -18,9 +18,12 @@ function showProducts() {
     var query = "SELECT * FROM product";
     connection.query(query, function(err, res) {
         if (err) throw err;
+        console.log("\n");
+        console.log("  Item ID:     |     Product Name     |     Department Name     |     Price     |     Stock");
+        console.log("-----------------------------------------------------------------------------------------------");
         for (var i = 0; i < res.length; i++) {
-            console.log("Product ID: " + res[i].item_number + "Product Name: " +
-                res[i].product_name + " Price: " + res[i].price);
+            console.log("       " + res[i].item_number + "              " + res[i].product_name + "              " + res[i].department_name + "                 " + res[i].price + "              " + res[i].stock);
+            console.log("                                                                                          ");
         }
     })
 }
