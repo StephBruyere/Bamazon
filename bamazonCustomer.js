@@ -18,6 +18,9 @@ function showProducts() {
     connection.query(query, function(err, res) {
         if (err) throw err;
         console.log("\n");
+        console.log("***************************************************************************************************");
+        console.log(" ~ Welcome To Our Ye Olde Shoppe ~ ");
+        console.log("***************************************************************************************************");
         console.log("  Item ID:     |     Product Name     |     Department Name     |     Price     |     Stock");
         console.log("-----------------------------------------------------------------------------------------------");
         for (var i = 0; i < res.length; i++) {
@@ -44,7 +47,7 @@ function start() {
         }, {
             name: "total",
             type: "input",
-            message: "Indicate the quantity you wish to purchase:",
+            message: "Indicate the quantity you wish to purchase: \n",
             validate: function(value) {
                 if (isNaN(value) === false) {
                     return true;
@@ -55,10 +58,11 @@ function start() {
         }])
         .then(function(answer) {
             var query = "SELECT item_number, product_name, department_name, price, stock FROM product";
-            connection.query(query, { item_number: answer.total, stock: answer.PriceID }, function(err, res) {
-                var name = res[0].product_name;
-                var stock = res[0].stock;
-                var price = res[0].price;
+            connection.query(query, { item_number: answer.productID, stock: answer.total }, function(err, res) {
+                var i = answer.productID - 1;
+                var name = res[i].product_name;
+                var stock = res[i].stock;
+                var price = res[i].price;
                 var updatedStock = parseInt(stock) - parseInt(answer.total);
                 var updatedPrice = price++;
                 console.log("You have purchased " + answer.total + name + " for a total of $" + answer.total * price);
@@ -68,7 +72,7 @@ function start() {
                     connection.query(query, [{
                         stock: updatedStock
                     }, {
-                        price: updatedPrice
+                        updatedPrice: price
                     }])
                 }
                 dataChange();
@@ -88,6 +92,9 @@ function restart() {
     }]).then(function(answers) {
         if (answers.restart === "Order Again?") {
             start();
-        } else { console.log("\nThanks for your order!"); }
+        } else {
+            console.log("\nThanks for your order!");
+            connection.end();
+        }
     });
 }
