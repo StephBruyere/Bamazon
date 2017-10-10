@@ -122,7 +122,7 @@ function addInventory() {
                     }, {
                         item_number: answer.productID
                     }]);
-                    console.log("There are " + res[i].stock + res[i].product_name + " available \n");
+                    console.log("There are " + updatedStock + res[i].product_name + " available \n");
                 }
                 dataChange();
                 manage();
