@@ -111,7 +111,6 @@ function addInventory() {
                 var i = answer.productID - 1;
                 var name = res[i].product_name;
                 var stock = res[i].stock;
-                var price = res[i].price;
                 var updatedStock = parseInt(res[i].stock) + parseInt(answer.total);
                 console.log("You have added " + answer.total + res[i].product_name);
 
@@ -168,6 +167,5 @@ function addProduct() {
         });
     });
 };
-
 
 manage();

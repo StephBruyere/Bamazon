@@ -65,7 +65,7 @@ function start() {
                 var price = res[i].price;
                 var updatedStock = parseInt(stock) - parseInt(answer.total);
                 var updatedPrice = price++;
-                console.log("You have purchased " + answer.total + name + " for a total of $" + answer.total * price);
+                console.log("You have purchased " + answer.total + " " + name + " for a total of $" + answer.total * price);
 
                 function dataChange() {
                     var query = "UPDATE product SET ? WHERE ?";
@@ -76,7 +76,7 @@ function start() {
                     }])
                 }
                 dataChange();
-                console.log("There are " + updatedStock + name + " available");
+                console.log("There are " + updatedStock + " " + name + " " + "available");
                 if (stock[0] <= 0) { console.log("Insufficient Quantity!") }
                 restart();
             })
