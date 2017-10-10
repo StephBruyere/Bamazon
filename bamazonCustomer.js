@@ -72,7 +72,7 @@ function start() {
                     connection.query(query, [{
                         stock: updatedStock
                     }, {
-                        updatedPrice: price
+                        price: updatedPrice
                     }])
                 }
                 dataChange();
@@ -85,16 +85,15 @@ function start() {
 
 function restart() {
     inquirer.prompt([{
-        name: "restart",
-        message: "\n Would you like to order again?",
         type: "list",
-        choices: ["Order Again?", "Quit?"]
+        name: "again",
+        message: "\n Would you like to order again?",
+        choices: ["Yes", "No"]
     }]).then(function(answers) {
-        if (answers.restart === "Order Again?") {
-            start();
+        if (answers.again === "Yes") {
+            console.log("test");
         } else {
             console.log("\nThanks for your order!");
-            connection.end();
         }
     });
 }
