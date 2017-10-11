@@ -88,12 +88,17 @@ function restart() {
         type: "list",
         name: "again",
         message: "\n Would you like to order again?",
-        choices: ["Yes", "No"]
+        choices: ["Yes", "No", "Log in as manager?"]
     }]).then(function(answers) {
         if (answers.again === "Yes") {
-            console.log("test");
-        } else {
+            start();
+        }
+        if (answers.again === "Log in as manager?") {
+            var keys = require("./manager.js")
+        }
+        if (answers.again === "no") {
             console.log("\nThanks for your order!");
+            connection.end();
         }
     });
 }
