@@ -7,7 +7,7 @@ This application was created as a mock store front and inventory manager, to be 
 2. Run BamazonCustomer.js through Node
 3. Interact with application
 
-#### This technology utilizes:
+### This technology utilizes:
 * Node
 * MYSQL
 * Inquirer
